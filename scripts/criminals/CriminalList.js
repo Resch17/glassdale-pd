@@ -8,25 +8,26 @@ eventHub.addEventListener("crimeChosen", (event) => {
   if (event.detail.crimeThatWasChosen !== "0") {
     const crime = event.detail.crimeThatWasChosen;
     const matchingCriminals = criminals.filter(
-      person => person.conviction === crime
+      (person) => person.conviction === crime
     );
     render(matchingCriminals);
+  } else {
+    render(criminals);
   }
 });
 
 let criminals = [];
 
 const render = (criminalCollection) => {
-  criminalTarget.innerHTML = "";
-  criminalCollection.forEach((criminal) => {
-    criminalTarget.innerHTML += Criminal(criminal);
-  });
+  criminalTarget.innerHTML = `
+  ${criminalCollection.map((criminal) => Criminal(criminal)).join("")}
+  `;
 };
 
 export const criminalList = () => {
   getCriminals().then(() => {
     const criminalArray = useCriminals();
     criminals = criminalArray.slice();
-    render(criminalArray);
+    render(criminals);
   });
 };
