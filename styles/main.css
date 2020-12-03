@@ -1,15 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 * {
   margin: 0;
   padding: 0;
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.5;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  padding: 1px 6px;
+}
+
+.form-control {
+  display: flex;
+  flex-direction: column;
+}
+
+.isHidden {
+  display: none;
+}
+
+div.isHidden {
+  display: none;
+}
+
+.filters {
+  margin: 1em;
+  display: flex;
+  justify-content: center;
+}
+
+.filter {
+  margin: 0 1em;
 }
 
 .criminalsContainer {
   display: flex;
   flex-wrap: wrap;
-  
+  margin: 1em;
+  justify-content: center;
 }
 
 .criminal-card {
-  border: 1px dotted black;
-  flex-basis: 25%;
+  border: 1px solid black;
+  flex-basis: 16%;
+  margin: 0.5em;
+  padding: 0.5em;
+  text-align: center;
+}
+
+.noteFormContainer {
+  width: 50%;
+  margin: 0 auto;
+  background-color: #aaa;
+  padding: 1em;
+  border-radius: 0.5em;
+}
+
+.noteFormContainer textarea {
+  margin-bottom: 0.25em;
+  padding: 4px;
+}
+
+.noteFormContainer input {
+  padding: 4px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+}
+
+.button-group div {
+  display: flex;
+  justify-content: center;
+}
+
+.noteFormContainer button {
+  margin: 0 1em;
+}
+
+.notesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.note-card {
+  border: 1px solid black;
+  margin: 0.5em;
+  padding: 3px 0.5em 0.5em;
+}
+
+.note-card h4 {
+  text-align: center;
+  margin-bottom: 5px;
+  border-bottom: 1px solid black;
+}
+
+.note-card p {
+  margin-bottom: 2px;
+}
+
+.note-card p:last-of-type {
+  margin-top: 10px;
 }
