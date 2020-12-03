@@ -9,7 +9,6 @@ export const officerList = () => {
     for (let officer of officerArray) {
       let officerHTML = Officer(officer);
       officerTarget.innerHTML += officerHTML;
-      console.log(officer);
     }
   });
 };

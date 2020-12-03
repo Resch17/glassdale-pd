@@ -14,7 +14,7 @@ eventHub.addEventListener("change", (event) => {
   }
 });
 
-const render = convictionsCollection => {
+const render = (convictionsCollection) => {
   contentTarget.innerHTML = `
     <select class="dropdown" id="crimeSelect">
       <option value="0">Please select a crime...</option>
@@ -23,11 +23,11 @@ const render = convictionsCollection => {
       })}
     </select>
     `;
-}
+};
 
 export const convictionSelect = () => {
   getConvictions().then(() => {
     const crimeArray = useConvictions();
-    render(crimeArray)    
+    render(crimeArray);
   });
 };
