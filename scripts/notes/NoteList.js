@@ -28,11 +28,7 @@ export const NoteList = () => {
       getNotes().then(() => {
         const noteArray = useNotes();
         viewNotesButton.innerHTML = "Close Notes";
-
-        for (let note of noteArray) {
-          let noteHTML = Note(note);
-          contentTarget.innerHTML += noteHTML;
-        }
+        contentTarget.innerHTML = noteArray.map((note) => Note(note)).join("");
       });
     } else {
       contentTarget.innerHTML = "";
