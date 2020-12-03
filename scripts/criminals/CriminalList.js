@@ -31,7 +31,6 @@ eventHub.addEventListener("officerChosen", (event) => {
 eventHub.addEventListener("associateChosen", (event) => {
   if (event.detail.chosenCriminal !== 0) {
     const criminalId = event.detail.chosenCriminal;
-    console.log(criminalId);
     const selectedCriminal = criminals.find(
       (person) => person.id == criminalId
     );
@@ -58,8 +57,7 @@ const render = (criminalCollection) => {
 
 export const criminalList = () => {
   getCriminals().then(() => {
-    const criminalArray = useCriminals();
-    criminals = criminalArray.slice();
+    criminals = useCriminals();
     render(criminals);
   });
 };

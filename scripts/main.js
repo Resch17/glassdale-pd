@@ -6,8 +6,8 @@ import { NoteList } from "./notes/NoteList.js";
 import { associatesFunction } from "./criminals/Associates.js";
 
 
-NoteForm();
 criminalList();
+NoteForm();
 convictionSelect();
 officerSelect();
 NoteList();

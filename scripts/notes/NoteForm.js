@@ -28,21 +28,21 @@ export const NoteForm = () => {
 
 eventHub.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "saveNote") {
-    let noteSuspectField = document.getElementById("noteSuspect").value;
-    let noteDateField = document.getElementById("noteDate").value;
-    let noteTextField = document.getElementById("noteText").value;
+    let noteSuspectValue = document.getElementById("noteSuspect").value;
+    let noteDateValue = document.getElementById("noteDate").value;
+    let noteTextValue = document.getElementById("noteText").value;
 
-    if (noteSuspectField && noteDateField && noteTextField !== "") {
+    if (noteSuspectValue && noteDateValue && noteTextValue !== "") {
       const newNote = {
-        suspect: noteSuspectField,
-        date: noteDateField,
-        text: noteTextField,
+        suspect: noteSuspectValue,
+        date: noteDateValue,
+        text: noteTextValue,
       };
 
       saveNote(newNote);
-      noteSuspectField = "";
-      noteDateField = "";
-      noteTextField = "";
+      noteSuspectValue = "";
+      noteDateValue = "";
+      noteTextValue = "";
     }
   }
 });
