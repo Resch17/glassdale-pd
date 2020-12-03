@@ -17,13 +17,13 @@ eventHub.addEventListener("crimeChosen", (event) => {
 });
 
 eventHub.addEventListener("officerChosen", (event) => {
-  if (event.detail.officerThatWasChosen !== "0") {
-    const officer = event.detail.officerThatWasChosen;
+  if (event.detail.officerThatWasChosen !== "0") {  // validate that an option was chosen, not the default
+    const officer = event.detail.officerThatWasChosen;  // assign the officer from the custom event payload to a variable
     const matchingCriminals = criminals.filter(
-      (person) => person.arrestingOfficer === officer
+      (person) => person.arrestingOfficer === officer  // find the criminals arrested by the Officer
     );
-    render(matchingCriminals);
-  } else {
+    render(matchingCriminals);  // render the list of matching criminals
+  } else {  // render the entire criminal list if the default option is chosen
     render(criminals);
   }
 });
