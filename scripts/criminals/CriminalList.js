@@ -17,13 +17,15 @@ eventHub.addEventListener("crimeChosen", (event) => {
 });
 
 eventHub.addEventListener("officerChosen", (event) => {
-  if (event.detail.officerThatWasChosen !== "0") {  // validate that an option was chosen, not the default
-    const officer = event.detail.officerThatWasChosen;  // assign the officer from the custom event payload to a variable
+  if (event.detail.officerThatWasChosen !== "0") {
+    // validate that an option was chosen, not the default
+    const officer = event.detail.officerThatWasChosen; // assign the officer from the custom event payload to a variable
     const matchingCriminals = criminals.filter(
-      (person) => person.arrestingOfficer === officer  // find the criminals arrested by the Officer
+      (person) => person.arrestingOfficer === officer // find the criminals arrested by the Officer
     );
-    render(matchingCriminals);  // render the list of matching criminals
-  } else {  // render the entire criminal list if the default option is chosen
+    render(matchingCriminals); // render the list of matching criminals
+  } else {
+    // render the entire criminal list if the default option is chosen
     render(criminals);
   }
 });
@@ -36,14 +38,15 @@ eventHub.addEventListener("associateChosen", (event) => {
     );
     const associates = selectedCriminal.known_associates;
     const displayAssociates = () => {
-      const knownAssociates = associates.map((x)=>{
-        return `Associate: ${x.name} - Alibi: ${x.alibi}\n`
-      })
-      return `${selectedCriminal.name}'s Known Associates:\n${knownAssociates.join("")}`
-    }
+      const knownAssociates = associates.map((x) => {
+        return `Associate: ${x.name} - Alibi: ${x.alibi}\n`;
+      });
+      return `${
+        selectedCriminal.name
+      }'s Known Associates:\n${knownAssociates.join("")}`;
+    };
 
-    alert(displayAssociates())
-    
+    alert(displayAssociates());
   }
 });
 
