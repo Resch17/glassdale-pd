@@ -5,14 +5,14 @@ const eventHub = document.querySelector(".container");
 const criminalTarget = document.querySelector(".criminalsContainer");
 
 eventHub.addEventListener("crimeChosen", (event) => {
-  if (event.detail.crimeThatWasChosen !== "0") {
-    const crime = event.detail.crimeThatWasChosen;
-    const matchingCriminals = criminals.filter(
-      (person) => person.conviction === crime
+  if (event.detail.crimeThatWasChosen !== "0") { // validate that an option was chosen, not the default
+    const crime = event.detail.crimeThatWasChosen; // assign the crime from the  custom event detail to a variable
+    const matchingCriminals = appStateCriminals.filter(
+      (person) => person.conviction === crime // find the criminals who are convicted of that crime
     );
-    render(matchingCriminals);
+    render(matchingCriminals); // render the list of matching criminals
   } else {
-    render(criminals);
+    render(appStateCriminals);
   }
 });
 
@@ -20,20 +20,20 @@ eventHub.addEventListener("officerChosen", (event) => {
   if (event.detail.officerThatWasChosen !== "0") {
     // validate that an option was chosen, not the default
     const officer = event.detail.officerThatWasChosen; // assign the officer from the custom event payload to a variable
-    const matchingCriminals = criminals.filter(
+    const matchingCriminals = appStateCriminals.filter(
       (person) => person.arrestingOfficer === officer // find the criminals arrested by the Officer
     );
     render(matchingCriminals); // render the list of matching criminals
   } else {
     // render the entire criminal list if the default option is chosen
-    render(criminals);
+    render(appStateCriminals);
   }
 });
 
 eventHub.addEventListener("associateChosen", (event) => {
   if (event.detail.chosenCriminal !== 0) {
     const criminalId = event.detail.chosenCriminal;
-    const selectedCriminal = criminals.find(
+    const selectedCriminal = appStateCriminals.find(
       (person) => person.id == criminalId
     );
     const associates = selectedCriminal.known_associates;
@@ -50,7 +50,7 @@ eventHub.addEventListener("associateChosen", (event) => {
   }
 });
 
-let criminals = [];
+let appStateCriminals = [];
 
 const render = (criminalCollection) => {
   criminalTarget.innerHTML = `
@@ -60,7 +60,7 @@ const render = (criminalCollection) => {
 
 export const criminalList = () => {
   getCriminals().then(() => {
-    criminals = useCriminals();
+    appStateCriminals = useCriminals();
     render(criminals);
   });
 };

@@ -21,6 +21,9 @@ button {
 .form-control {
   display: flex;
   flex-direction: column;
+}
+
+.form-control label {
   font-weight: bold;
 }
 
@@ -30,6 +33,14 @@ button {
 
 div.isHidden {
   display: none;
+}
+
+header {
+  text-align: center;
+}
+
+#showWitnesses {
+  margin-bottom: 1em;
 }
 
 .filters {
@@ -49,13 +60,19 @@ div.isHidden {
   justify-content: center;
 }
 
-.criminal-card {
+.criminal-card, .witness-card {
   border: 1px solid black;
   flex-basis: 16%;
   margin: 0.5em;
   padding: 0.5em;
   text-align: center;
 }
+
+.witness-card {
+  flex-basis: 33%;
+}
+
+
 
 .noteFormContainer {
   width: 50%;
