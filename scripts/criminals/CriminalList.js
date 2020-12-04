@@ -9,7 +9,7 @@ eventHub.addEventListener("crimeChosen", (event) => {
   let criminals = useCriminals();
   let crimes = useConvictions();
   if (event.detail.crimeThatWasChosen !== "0") { // validate that an option was chosen, not the default
-    const crime = crimes.find((crime)=>crime.id === parseInt(event.detail.crimeThatWasChosen)); // assign the crime from the custom event detail to a variable
+    const crime = crimes.find((crime)=>crime.id === parseInt(event.detail.crimeThatWasChosen)); // assign the crime from the custom event detail to a variable by matching its id up with the crime names from the crime list
     const matchingCriminals = criminals.filter(
       (person) => person.conviction === crime.name // find the criminals who are convicted of that crime
     );
