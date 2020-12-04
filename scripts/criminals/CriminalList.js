@@ -6,7 +6,7 @@ const criminalTarget = document.querySelector(".criminalsContainer");
 
 eventHub.addEventListener("crimeChosen", (event) => {
   if (event.detail.crimeThatWasChosen !== "0") { // validate that an option was chosen, not the default
-    const crime = event.detail.crimeThatWasChosen; // assign the crime from the  custom event detail to a variable
+    const crime = event.detail.crimeThatWasChosen; // assign the crime from the custom event detail to a variable
     const matchingCriminals = appStateCriminals.filter(
       (person) => person.conviction === crime // find the criminals who are convicted of that crime
     );
@@ -61,6 +61,6 @@ const render = (criminalCollection) => {
 export const criminalList = () => {
   getCriminals().then(() => {
     appStateCriminals = useCriminals();
-    render(criminals);
+    render(appStateCriminals);
   });
 };

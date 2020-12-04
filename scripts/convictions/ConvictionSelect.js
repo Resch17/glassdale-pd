@@ -18,9 +18,9 @@ const render = (convictionsCollection) => {
   contentTarget.innerHTML = `
     <select class="dropdown" id="crimeSelect">
       <option value="0">Please select a crime...</option>
-      ${convictionsCollection.map((crime) => {
-        return `<option value="${crime.name}">${crime.name}</option>`;
-      })}
+      ${convictionsCollection
+        .map((crime) => `<option value="${crime.name}">${crime.name}</option>`)
+        .join("")}
     </select>
     `;
 };
