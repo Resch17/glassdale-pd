@@ -10,14 +10,12 @@ const render = (witnessCollection) => {
     .join("");
 };
 
-let witnesses = [];
-
 export const witnessList = () => {
   eventHub.addEventListener("click", (clickEvent) => {
     if (clickEvent.target.id === "showWitnesses") {
       witnessTarget.innerHTML = "";
       getWitnesses().then(() => {
-        witnesses = useWitnesses();
+        let witnesses = useWitnesses();
         render(witnesses);
       });
     }
