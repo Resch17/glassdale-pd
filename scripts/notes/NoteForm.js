@@ -32,6 +32,7 @@ eventHub.addEventListener('click', (clickEvent) => {
     let noteDateValue = document.getElementById('noteDate').value;
     let noteTextValue = document.getElementById('noteText').value;
 
+    // validate that form values are not empty
     if (noteSuspectValue && noteDateValue && noteTextValue !== '') {
       const newNote = {
         suspect: noteSuspectValue,
@@ -40,9 +41,12 @@ eventHub.addEventListener('click', (clickEvent) => {
       };
 
       saveNote(newNote);
+
+      // reset form fields to blank
       noteSuspectValue = '';
       noteDateValue = '';
       noteTextValue = '';
     }
   }
 });
+ 
