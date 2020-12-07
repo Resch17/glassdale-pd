@@ -1,4 +1,4 @@
-import { NoteList } from './NoteList.js';
+// import { NoteList } from './NoteList.js';
 const eventHub = document.querySelector('.container');
 
 const dispatchStateChangeEvent = () => {
@@ -29,6 +29,6 @@ export const saveNote = (note) => {
     },
     body: JSON.stringify(note),
   })
-    .then(NoteList())
+    .then(getNotes)
     .then(dispatchStateChangeEvent);
 };

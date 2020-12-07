@@ -28,25 +28,23 @@ export const NoteForm = () => {
 
 eventHub.addEventListener('click', (clickEvent) => {
   if (clickEvent.target.id === 'saveNote') {
-    let noteSuspectValue = document.getElementById('noteSuspect').value;
-    let noteDateValue = document.getElementById('noteDate').value;
-    let noteTextValue = document.getElementById('noteText').value;
+    let noteSuspect = document.getElementById('noteSuspect');
+    let noteDate = document.getElementById('noteDate');
+    let noteText = document.getElementById('noteText');
 
     // validate that form values are not empty
-    if (noteSuspectValue && noteDateValue && noteTextValue !== '') {
+    if (noteSuspect.value && noteDate.value && noteText.value !== '') {
       const newNote = {
-        suspect: noteSuspectValue,
-        date: noteDateValue,
-        text: noteTextValue,
+        suspect: noteSuspect.value,
+        date: noteDate.value,
+        text: noteText.value,
         timestamp: Date.now(),
       };
 
       saveNote(newNote);
-
-      // reset form fields to blank
-      noteSuspectValue = '';
-      noteDateValue = '';
-      noteTextValue = '';
+      noteSuspect.value = '';
+      noteDate.value = '';
+      noteText.value = '';
     }
   }
 });

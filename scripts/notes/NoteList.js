@@ -1,8 +1,9 @@
 import { Note } from './Note.js';
 import { getNotes, useNotes } from './NoteProvider.js';
+const eventHub = document.querySelector('.container');
+const contentTarget = document.querySelector('.notesContainer');
 
 export const NoteList = () => {
-  const contentTarget = document.querySelector('.notesContainer');
   const addNoteButton = document.querySelector('#addNote');
   const closeNoteButton = document.querySelector('#closeNoteForm');
   const viewNotesButton = document.querySelector('#viewNotes');
@@ -34,5 +35,16 @@ export const NoteList = () => {
       contentTarget.innerHTML = '';
       viewNotesButton.innerHTML = 'View Notes';
     }
+  });
+};
+
+eventHub.addEventListener('noteStateChanged', () => {
+  renderNotes();
+});
+
+const renderNotes = () => {
+  getNotes().then(() => {
+    const noteArray = useNotes();
+    contentTarget.innerHTML = noteArray.map((note) => Note(note)).join('');
   });
 };
