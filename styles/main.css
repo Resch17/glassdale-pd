@@ -60,7 +60,8 @@ header {
   justify-content: center;
 }
 
-.criminal-card, .witness-card {
+.criminal-card,
+.witness-card {
   border: 1px solid black;
   flex-basis: 16%;
   margin: 0.5em;
@@ -71,8 +72,6 @@ header {
 .witness-card {
   flex-basis: 33%;
 }
-
-
 
 .noteFormContainer {
   width: 50%;
