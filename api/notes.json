@@ -23,6 +23,13 @@
       "date": "12/4/2020",
       "text": "Multiple witnesses reference the suspect as being male, driving a large pickup, and wearing a hat from a car dealership.",
       "id": 4
+    },
+    {
+      "suspect": "Cary Bauch",
+      "date": "2020-12-09",
+      "text": "TEST NOTE",
+      "timestamp": 1607372644854,
+      "id": 5
     }
   ]
 }

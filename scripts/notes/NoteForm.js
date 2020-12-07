@@ -9,7 +9,7 @@ const render = () => {
     <label for="note-suspect">Suspect: </label>
     <input type="text" name="note-suspect" id="noteSuspect">
     <label for="note-date">Date: </label>
-    <input type="text" name="note-date" id="noteDate">
+    <input type="date" name="note-date" id="noteDate">
     <label for="note-text">Note: </label>
     <textarea name="note-text" id="noteText" cols="30" rows="10"></textarea>
   </div>
@@ -38,6 +38,7 @@ eventHub.addEventListener('click', (clickEvent) => {
         suspect: noteSuspectValue,
         date: noteDateValue,
         text: noteTextValue,
+        timestamp: Date.now()
       };
 
       saveNote(newNote);
