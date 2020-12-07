@@ -6,5 +6,5 @@ export const Note = (note) => {
     <p><strong>Date: </strong>${note.date}</p>
     <p>${note.text}</p>
   </section>
-  `
+  `;
 };

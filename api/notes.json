@@ -17,6 +17,12 @@
       "date": "12/2/2020",
       "text": "TEST!",
       "id": 3
+    },
+    {
+      "suspect": "Unknown",
+      "date": "12/4/2020",
+      "text": "Multiple witnesses reference the suspect as being male, driving a large pickup, and wearing a hat from a car dealership.",
+      "id": 4
     }
   ]
 }

@@ -1,11 +1,11 @@
-import { useOfficers, getOfficers } from "./OfficerProvider.js";
+import { useOfficers, getOfficers } from './OfficerProvider.js';
 
-const eventHub = document.querySelector(".container");
-const contentTarget = document.querySelector(".filters__officer");
+const eventHub = document.querySelector('.container');
+const contentTarget = document.querySelector('.filters__officer');
 
-eventHub.addEventListener("change", (event) => {
-  if (event.target.id === "officerSelect") {
-    const customEvent = new CustomEvent("officerChosen", {
+eventHub.addEventListener('change', (event) => {
+  if (event.target.id === 'officerSelect') {
+    const customEvent = new CustomEvent('officerChosen', {
       detail: {
         officerThatWasChosen: event.target.value,
       },

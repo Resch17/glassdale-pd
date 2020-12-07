@@ -1,15 +1,16 @@
-import { NoteList } from "./NoteList.js";
-const eventHub = document.querySelector(".container");
+import { NoteList } from './NoteList.js';
+const eventHub = document.querySelector('.container');
 
 const dispatchStateChangeEvent = () => {
-  const noteStateChangedEvent = new CustomEvent("noteStateChanged");
+  const noteStateChangedEvent = new CustomEvent('noteStateChanged');
 
   eventHub.dispatchEvent(noteStateChangedEvent);
 };
+
 let notes = [];
 
 export const getNotes = () => {
-  return fetch("http://localhost:8088/notes")
+  return fetch('http://localhost:8088/notes')
     .then((response) => response.json())
     .then((parsedNotes) => {
       notes = parsedNotes;
@@ -21,10 +22,10 @@ export const useNotes = () => {
 };
 
 export const saveNote = (note) => {
-  return fetch("http://localhost:8088/notes", {
-    method: "POST",
+  return fetch('http://localhost:8088/notes', {
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(note),
   })

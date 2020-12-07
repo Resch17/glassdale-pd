@@ -1,7 +1,7 @@
-import { saveNote } from "./NoteProvider.js";
+import { saveNote } from './NoteProvider.js';
 
-const eventHub = document.querySelector(".container");
-const contentTarget = document.querySelector(".noteFormContainer");
+const eventHub = document.querySelector('.container');
+const contentTarget = document.querySelector('.noteFormContainer');
 
 const render = () => {
   contentTarget.innerHTML = `
@@ -26,23 +26,23 @@ export const NoteForm = () => {
   render();
 };
 
-eventHub.addEventListener("click", (clickEvent) => {
-  if (clickEvent.target.id === "saveNote") {
-    let noteSuspectField = document.getElementById("noteSuspect").value;
-    let noteDateField = document.getElementById("noteDate").value;
-    let noteTextField = document.getElementById("noteText").value;
+eventHub.addEventListener('click', (clickEvent) => {
+  if (clickEvent.target.id === 'saveNote') {
+    let noteSuspectValue = document.getElementById('noteSuspect').value;
+    let noteDateValue = document.getElementById('noteDate').value;
+    let noteTextValue = document.getElementById('noteText').value;
 
-    if (noteSuspectField && noteDateField && noteTextField !== "") {
+    if (noteSuspectValue && noteDateValue && noteTextValue !== '') {
       const newNote = {
-        suspect: noteSuspectField,
-        date: noteDateField,
-        text: noteTextField,
+        suspect: noteSuspectValue,
+        date: noteDateValue,
+        text: noteTextValue,
       };
 
       saveNote(newNote);
-      noteSuspectField = "";
-      noteDateField = "";
-      noteTextField = "";
+      noteSuspectValue = '';
+      noteDateValue = '';
+      noteTextValue = '';
     }
   }
 });
