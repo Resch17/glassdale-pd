@@ -38,7 +38,7 @@ eventHub.addEventListener('click', (clickEvent) => {
         suspect: noteSuspectValue,
         date: noteDateValue,
         text: noteTextValue,
-        timestamp: Date.now()
+        timestamp: Date.now(),
       };
 
       saveNote(newNote);
@@ -50,4 +50,3 @@ eventHub.addEventListener('click', (clickEvent) => {
     }
   }
 });
- 
