@@ -6,11 +6,9 @@ const contentTarget = document.querySelector('.noteFormContainer');
 const render = () => {
   contentTarget.innerHTML = `
   <div class="form-control isHidden">
-    <label for="note-suspect">Suspect: </label>
+    <label for="noteSuspect">Suspect: </label>
     <input type="text" name="note-suspect" id="noteSuspect">
-    <label for="note-date">Date: </label>
-    <input type="date" name="note-date" id="noteDate">
-    <label for="note-text">Note: </label>
+    <label for="noteText">Note: </label>
     <textarea name="note-text" id="noteText" cols="30" rows="10"></textarea>
   </div>
   <div class="button-group">
@@ -29,21 +27,21 @@ export const NoteForm = () => {
 eventHub.addEventListener('click', (clickEvent) => {
   if (clickEvent.target.id === 'saveNote') {
     let noteSuspect = document.getElementById('noteSuspect');
-    let noteDate = document.getElementById('noteDate');
+    let noteDate = new Date();
     let noteText = document.getElementById('noteText');
 
     // validate that form values are not empty
-    if (noteSuspect.value && noteDate.value && noteText.value !== '') {
+    if (noteSuspect.value && noteText.value !== '') {
       const newNote = {
         suspect: noteSuspect.value,
-        date: noteDate.value,
+        date: noteDate,
         text: noteText.value,
         timestamp: Date.now(),
       };
 
       saveNote(newNote);
       noteSuspect.value = '';
-      noteDate.value = '';
+      // noteDate.value = '';
       noteText.value = '';
     } else {
       alert('Please fill out all the fields');

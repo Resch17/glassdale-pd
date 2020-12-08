@@ -2,5 +2,6 @@
   "liveServer.settings.ignoreFiles" : [
     ".vscode/**",
     "**/*.json"
-]
+],
+"liveServer.settings.port": 5501
 }

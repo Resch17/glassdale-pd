@@ -46,7 +46,7 @@ eventHub.addEventListener('associateChosen', (event) => {
   if (event.detail.chosenCriminal !== 0) {
     const criminalId = event.detail.chosenCriminal;
     const selectedCriminal = criminals.find(
-      (person) => person.id == criminalId
+      (person) => person.id === parseInt(criminalId)
     );
     const associates = selectedCriminal.known_associates;
     const displayAssociates = () => {
@@ -61,6 +61,11 @@ eventHub.addEventListener('associateChosen', (event) => {
     alert(displayAssociates());
   }
 });
+
+eventHub.addEventListener('showCriminals', () => {
+  let criminals = useCriminals();
+  render(criminals);
+})
 
 const render = (criminalCollection) => {
   criminalTarget.innerHTML = `

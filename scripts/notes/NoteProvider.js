@@ -8,7 +8,7 @@ const dispatchStateChangeEvent = () => {
 // this variable holds the notes APPLICATION STATE
 let notes = [];
 
-// this function gets our DATABASE STATE notes and updates the APPLCIATION STATE variable to match
+// this function gets our API STATE notes and updates the APPLCIATION STATE variable to match
 export const getNotes = () => {
   return fetch('http://localhost:8088/notes')
     .then((response) => response.json())

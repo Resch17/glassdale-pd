@@ -40,7 +40,8 @@ header {
   text-align: center;
 }
 
-#showWitnesses {
+#showWitnesses,
+#showCriminals {
   margin-bottom: 1em;
 }
 
