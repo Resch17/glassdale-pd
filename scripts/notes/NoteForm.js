@@ -45,6 +45,8 @@ eventHub.addEventListener('click', (clickEvent) => {
       noteSuspect.value = '';
       noteDate.value = '';
       noteText.value = '';
+    } else {
+      alert('Please fill out all the fields');
     }
   }
 });

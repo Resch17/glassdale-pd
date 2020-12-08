@@ -27,9 +27,8 @@ export const NoteList = () => {
   viewNotesButton.addEventListener('click', () => {
     if (contentTarget.innerHTML === '') {
       getNotes().then(() => {
-        const noteArray = useNotes();
         viewNotesButton.innerHTML = 'Close Notes';
-        contentTarget.innerHTML = noteArray.map((note) => Note(note)).join('');
+        renderNotes();
       });
     } else {
       contentTarget.innerHTML = '';
@@ -39,7 +38,9 @@ export const NoteList = () => {
 };
 
 eventHub.addEventListener('noteStateChanged', () => {
-  renderNotes();
+  if (contentTarget.innerHTML !== '') {
+    renderNotes();
+  }
 });
 
 const renderNotes = () => {
