@@ -26,10 +26,8 @@ export const NoteList = () => {
 
   viewNotesButton.addEventListener('click', () => {
     if (contentTarget.innerHTML === '') {
-      getNotes().then(() => {
-        viewNotesButton.innerHTML = 'Close Notes';
-        renderNotes();
-      });
+      viewNotesButton.innerHTML = 'Close Notes';
+      renderNotes();
     } else {
       contentTarget.innerHTML = '';
       viewNotesButton.innerHTML = 'View Notes';
