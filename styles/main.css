@@ -44,6 +44,14 @@ button {
   text-align: left;
 }
 
+section.text-left {
+  text-align: left;
+}
+
+article.isHidden {
+  display: none;
+}
+
 div.isHidden {
   display: none;
 }
@@ -53,7 +61,8 @@ header {
 }
 
 #showWitnesses,
-#showCriminals {
+#showCriminals,
+#showFacilities {
   margin-bottom: 1em;
 }
 
@@ -67,7 +76,8 @@ header {
   margin: 0 1em;
 }
 
-.criminalsContainer {
+.criminalsContainer,
+.facilityContainer {
   display: flex;
   flex-wrap: wrap;
   margin: 1em;
@@ -75,12 +85,18 @@ header {
 }
 
 .criminal-card,
-.witness-card {
+.witness-card,
+.facility-card {
   border: 1px solid black;
   flex-basis: 16%;
   margin: 0.5em;
   padding: 0.5em;
   text-align: center;
+}
+
+.facility-card {
+  flex-basis: 33%;
+  background-color: #e7bc6c;
 }
 
 .witness-card {

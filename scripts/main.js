@@ -5,6 +5,7 @@ import { NoteForm } from './notes/NoteForm.js';
 import { NoteList } from './notes/NoteList.js';
 import { associatesFunction } from './criminals/Associates.js';
 import { witnessList } from './witnesses/WitnessList.js';
+import { DisplayFacilitiesButton } from './facilities/DisplayFacilitiesButton.js'
 
 
 criminalList();
@@ -14,3 +15,4 @@ convictionSelect();
 officerSelect();
 associatesFunction();
 witnessList();
+DisplayFacilitiesButton();

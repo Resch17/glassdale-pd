@@ -9,6 +9,7 @@ import {
   getFacilities,
   useFacilities,
 } from '../facilities/FacilityProvider.js';
+import { facilityList } from '../facilities/FacilityList.js';
 
 const eventHub = document.querySelector('.container');
 const criminalTarget = document.querySelector('.criminalsContainer');
@@ -16,7 +17,7 @@ const criminalTarget = document.querySelector('.criminalsContainer');
 eventHub.addEventListener('crimeChosen', (event) => {
   let criminals = useCriminals();
   let crimes = useConvictions();
-  let matchingCriminals
+  let matchingCriminals;
 
   // validate that an option was chosen, not the default
   if (event.detail.crimeThatWasChosen !== '0') {
@@ -31,7 +32,7 @@ eventHub.addEventListener('crimeChosen', (event) => {
     );
     const facilities = useFacilities();
     const crimFac = useCriminalFacilities();
-    
+
     // render the list of matching criminals (including facility info to fulfill refactored renderList function)
     renderList(matchingCriminals, facilities, crimFac);
   } else {
@@ -81,6 +82,12 @@ eventHub.addEventListener('associateChosen', (event) => {
 
 eventHub.addEventListener('showCriminals', () => {
   criminalList();
+});
+
+eventHub.addEventListener('facilitiesButtonClicked', () => {
+  criminalTarget.classList.toggle('isHidden');
+  facilityList();
+  document.querySelector('.facilityContainer').classList.toggle('isHidden');
 });
 
 const renderList = (criminalCollection, allFacilities, allRelationships) => {
