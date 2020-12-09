@@ -8,6 +8,7 @@ const render = () => {
   <div class="form-control isHidden">
     <label for="noteAuthor">Author: </label>
     <input type="text" name="note-author" id="noteAuthor">
+    <label for="noteForm--criminal">Suspect: </label>
     <select id="noteForm--criminal" class="criminalSelect">
       <option value="0">Select a criminal...</option>
     </select>

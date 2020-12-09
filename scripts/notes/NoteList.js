@@ -10,6 +10,15 @@ const fillCriminalSelect = () => {
   getCriminals().then(() => {
     criminals = useCriminals();
     criminalSelect.innerHTML += criminals
+      .sort((a, b) => {
+        if (a.name < b.name) {
+          return -1;
+        }
+        if (a.name > b.name) {
+          return 1;
+        }
+        return 0;
+      })
       .map((criminal) => {
         return `<option value="${criminal.id}">${criminal.name}</option>`;
       })
@@ -67,12 +76,13 @@ const renderNotes = () => {
 };
 
 const render = (noteCollection, criminalCollection) => {
-  contentTarget.innerHTML = noteCollection.map((note) => {
-    const relatedCriminal = criminalCollection.find(
-      (criminal) => criminal.id === parseInt(note.criminalId)
-    );
+  contentTarget.innerHTML = noteCollection
+    .map((note) => {
+      const relatedCriminal = criminalCollection.find(
+        (criminal) => criminal.id === parseInt(note.criminalId)
+      );
 
-    return `
+      return `
       <section class="note-card">
         <h4>Detective's Note</h4>
         <p><strong>Author: </strong>${note.author}</p>
@@ -83,5 +93,6 @@ const render = (noteCollection, criminalCollection) => {
         <p>${note.text}</p>
       </section>
     `;
-  }).join('');
+    })
+    .join('');
 };

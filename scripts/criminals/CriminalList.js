@@ -65,11 +65,22 @@ eventHub.addEventListener('associateChosen', (event) => {
 eventHub.addEventListener('showCriminals', () => {
   let criminals = useCriminals();
   render(criminals);
-})
+});
 
 const render = (criminalCollection) => {
   criminalTarget.innerHTML = `
-  ${criminalCollection.map((criminal) => Criminal(criminal)).join('')}
+  ${criminalCollection
+    .sort((a, b) => {
+      if (a.name < b.name) {
+        return -1;
+      }
+      if (a.name > b.name) {
+        return 1;
+      }
+      return 0;
+    })
+    .map((criminal) => Criminal(criminal))
+    .join('')}
   `;
 };
 
