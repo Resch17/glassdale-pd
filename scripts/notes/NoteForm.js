@@ -7,10 +7,10 @@ const render = () => {
   contentTarget.innerHTML = `
   <div class="form-control isHidden">
     <label for="noteAuthor">Author: </label>
-    <input type="text" name="note-author" id="noteAuthor">
+    <input type="text" name="note-author" id="noteAuthor" autocomplete="off">
     <label for="noteForm--criminal">Suspect: </label>
     <select id="noteForm--criminal" class="criminalSelect">
-      <option value="0">Select a criminal...</option>
+      <option value="">Select a criminal...</option>
     </select>
     <label for="noteText">Note: </label>
     <textarea name="note-text" id="noteText" cols="30" rows="10"></textarea>
@@ -36,7 +36,7 @@ eventHub.addEventListener('click', (clickEvent) => {
     let noteText = document.getElementById('noteText');
 
     // validate that form values are not empty
-    if (noteAuthor.value && noteText.value !== '') {
+    if (noteAuthor.value && noteText.value && noteSuspect.value !== '') {
       const newNote = {
         author: noteAuthor.value,
         criminalId: noteSuspect.value,
@@ -46,6 +46,7 @@ eventHub.addEventListener('click', (clickEvent) => {
       };
 
       saveNote(newNote);
+
       noteAuthor.value = '';
       noteSuspect.value = '';
       noteText.value = '';

@@ -2,19 +2,27 @@
   "notes": [
     {
       "author": "Aaron",
-      "criminalId": "6",
-      "date": "2020-12-09T17:08:30.066Z",
-      "text": "Who did Adrienne bribe to get such a hefty sentence? ",
-      "timestamp": 1607533710066,
-      "id": 2
-    },
-    {
-      "author": "Aaron",
       "criminalId": "70",
       "date": "2020-12-09T17:09:16.154Z",
       "text": "Glassdale is safer with Brannon behind bars.",
       "timestamp": 1607533756154,
       "id": 3
+    },
+    {
+      "author": "Aaron",
+      "criminalId": "6",
+      "date": "2020-12-09T20:25:03.274Z",
+      "text": "Who did she TRY to bribe to get such a lengthy sentence?",
+      "timestamp": 1607545503274,
+      "id": 4
+    },
+    {
+      "author": "Aaron",
+      "criminalId": "74",
+      "date": "2020-12-09T21:25:38.686Z",
+      "text": "Bud Waters is just an honest name for Bud Light.",
+      "timestamp": 1607549138686,
+      "id": 5
     }
   ]
 }
