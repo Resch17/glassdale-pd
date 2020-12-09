@@ -1,4 +1,4 @@
-import { getNotes, useNotes } from './NoteProvider.js';
+import { getNotes, useNotes, deleteNote } from './NoteProvider.js';
 import { getCriminals, useCriminals } from '../criminals/CriminalProvider.js';
 const eventHub = document.querySelector('.container');
 const contentTarget = document.querySelector('.notesContainer');
@@ -57,6 +57,16 @@ eventHub.addEventListener('noteStateChanged', () => {
   }
 });
 
+eventHub.addEventListener('click', (clickEvent) => {
+  if (clickEvent.target.id.startsWith('deleteNote--')) {
+    const [unused, id] = clickEvent.target.id.split('--');
+
+    deleteNote(id).then(() => {
+      renderNotes();
+    });
+  }
+});
+
 const renderNotes = () => {
   getNotes()
     .then(getCriminals)
@@ -83,6 +93,9 @@ const render = (noteCollection, criminalCollection) => {
           'en-US'
         )}</p>
         <p>${note.text}</p>
+        <div class="text-center"><button id="deleteNote--${
+          note.id
+        }">Delete</button></div>
       </section>
     `;
     })

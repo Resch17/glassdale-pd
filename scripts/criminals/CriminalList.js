@@ -50,9 +50,11 @@ eventHub.addEventListener('associateChosen', (event) => {
     );
     const associates = selectedCriminal.known_associates;
     const displayAssociates = () => {
-      const knownAssociates = associates.map((x) => {
-        return `Associate: ${x.name} - Alibi: ${x.alibi}\n`;
-      });
+      const knownAssociates = associates
+        .sort((a, b) => a.name.localeCompare(b.name))
+        .map((x) => {
+          return `Associate: ${x.name} - Alibi: ${x.alibi}\n`;
+        });
       return `${
         selectedCriminal.name
       }'s Known Associates:\n${knownAssociates.join('')}`;
