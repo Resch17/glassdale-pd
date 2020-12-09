@@ -19,6 +19,7 @@ const render = (convictionsCollection) => {
     <select class="dropdown" id="crimeSelect">
       <option value="0">Please select a crime...</option>
       ${convictionsCollection
+        .sort((a, b) => a.name.localeCompare(b.name))
         .map((crime) => `<option value="${crime.id}">${crime.name}</option>`)
         .join('')}
     </select>

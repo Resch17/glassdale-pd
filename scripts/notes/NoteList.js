@@ -10,15 +10,7 @@ const fillCriminalSelect = () => {
   getCriminals().then(() => {
     criminals = useCriminals();
     criminalSelect.innerHTML += criminals
-      .sort((a, b) => {
-        if (a.name < b.name) {
-          return -1;
-        }
-        if (a.name > b.name) {
-          return 1;
-        }
-        return 0;
-      })
+      .sort((a, b) => a.name.localeCompare(b.name))
       .map((criminal) => {
         return `<option value="${criminal.id}">${criminal.name}</option>`;
       })
