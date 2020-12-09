@@ -1,6 +1,14 @@
 import { useConvictions } from '../convictions/ConvictionProvider.js';
 import { Criminal } from './Criminal.js';
 import { useCriminals, getCriminals } from './CriminalProvider.js';
+import {
+  getCriminalFacilities,
+  useCriminalFacilities,
+} from '../facilities/CriminalFacilityProvider.js';
+import {
+  getFacilities,
+  useFacilities,
+} from '../facilities/FacilityProvider.js';
 
 const eventHub = document.querySelector('.container');
 const criminalTarget = document.querySelector('.criminalsContainer');
