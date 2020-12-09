@@ -77,13 +77,23 @@ eventHub.addEventListener('showCriminals', () => {
   render(criminals);
 });
 
-const render = (criminalCollection) => {
-  criminalTarget.innerHTML = `
-  ${criminalCollection
-    .sort((a, b) => a.name.localeCompare(b.name))
-    .map((criminal) => Criminal(criminal))
-    .join('')}
-  `;
+const render = (criminalCollection, allFacilities, allRelationships) => {
+  criminalTarget.innerHTML = criminalCollection
+    .map((criminalObject) => {
+      const facilityRelationshipsForThisCriminal = allRelationships.filter(
+        (cf) => cf.criminalId === criminalObject.id
+      );
+
+      const facilities = facilityRelationshipsForThisCriminal.map((cf) => {
+        const matchingFacilityObject = allFacilities.find(
+          (facility) => facility.id === cf.facilityId
+        );
+        return matchingFacilityObject;
+      });
+
+      return Criminal(criminalObject, facilities);
+    })
+    .join('');
 };
 
 export const criminalList = () => {
@@ -91,4 +101,14 @@ export const criminalList = () => {
     let criminals = useCriminals();
     render(criminals);
   });
+
+  getFacilities()
+    .then(getCriminalFacilities)
+    .then(() => {
+      const facilities = useFacilities();
+      const crimFac = useCriminalFacilities();
+      const criminals = useCriminals();
+
+      render(criminals, facilities, crimFac);
+    });
 };

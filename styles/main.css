@@ -15,6 +15,10 @@ select {
   font: inherit;
 }
 
+ul {
+  list-style: none;
+}
+
 button {
   padding: 1px 6px;
 }
@@ -34,6 +38,10 @@ button {
 
 .text-center {
   text-align: center;
+}
+
+.text-left {
+  text-align: left;
 }
 
 div.isHidden {
