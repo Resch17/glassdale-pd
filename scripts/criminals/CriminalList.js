@@ -16,6 +16,7 @@ const criminalTarget = document.querySelector('.criminalsContainer');
 eventHub.addEventListener('crimeChosen', (event) => {
   let criminals = useCriminals();
   let crimes = useConvictions();
+  let matchingCriminals
 
   // validate that an option was chosen, not the default
   if (event.detail.crimeThatWasChosen !== '0') {
@@ -25,27 +26,33 @@ eventHub.addEventListener('crimeChosen', (event) => {
     );
 
     // find the criminals who are convicted of that crime
-    const matchingCriminals = criminals.filter(
+    matchingCriminals = criminals.filter(
       (person) => person.conviction === crime.name
     );
-
-    // render the list of matching criminals
-    render(matchingCriminals);
+    const facilities = useFacilities();
+    const crimFac = useCriminalFacilities();
+    
+    // render the list of matching criminals (including facility info to fulfill refactored renderList function)
+    renderList(matchingCriminals, facilities, crimFac);
   } else {
-    render(criminals);
+    // render default list if default crime is chosen (no crime is chosen)
+    criminalList();
   }
 });
 
 eventHub.addEventListener('officerChosen', (event) => {
   let criminals = useCriminals();
+  let matchingCriminals;
   if (event.detail.officerThatWasChosen !== '0') {
     const officer = event.detail.officerThatWasChosen;
-    const matchingCriminals = criminals.filter(
+    matchingCriminals = criminals.filter(
       (person) => person.arrestingOfficer === officer
     );
-    render(matchingCriminals);
+    const facilities = useFacilities();
+    const crimFac = useCriminalFacilities();
+    renderList(matchingCriminals, facilities, crimFac);
   } else {
-    render(criminals);
+    criminalList();
   }
 });
 
@@ -73,12 +80,12 @@ eventHub.addEventListener('associateChosen', (event) => {
 });
 
 eventHub.addEventListener('showCriminals', () => {
-  let criminals = useCriminals();
-  render(criminals);
+  criminalList();
 });
 
-const render = (criminalCollection, allFacilities, allRelationships) => {
+const renderList = (criminalCollection, allFacilities, allRelationships) => {
   criminalTarget.innerHTML = criminalCollection
+    .sort((a, b) => a.name.localeCompare(b.name))
     .map((criminalObject) => {
       const facilityRelationshipsForThisCriminal = allRelationships.filter(
         (cf) => cf.criminalId === criminalObject.id
@@ -97,18 +104,15 @@ const render = (criminalCollection, allFacilities, allRelationships) => {
 };
 
 export const criminalList = () => {
-  getCriminals().then(() => {
-    let criminals = useCriminals();
-    render(criminals);
-  });
+  getCriminals().then(
+    getFacilities()
+      .then(getCriminalFacilities)
+      .then(() => {
+        const facilities = useFacilities();
+        const crimFac = useCriminalFacilities();
+        const criminals = useCriminals();
 
-  getFacilities()
-    .then(getCriminalFacilities)
-    .then(() => {
-      const facilities = useFacilities();
-      const crimFac = useCriminalFacilities();
-      const criminals = useCriminals();
-
-      render(criminals, facilities, crimFac);
-    });
+        renderList(criminals, facilities, crimFac);
+      })
+  );
 };
