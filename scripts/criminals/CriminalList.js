@@ -75,7 +75,6 @@ eventHub.addEventListener('associateChosen', (event) => {
         selectedCriminal.name
       }'s Known Associates:\n${knownAssociates.join('')}`;
     };
-
     alert(displayAssociates());
   }
 });
@@ -118,7 +117,6 @@ export const criminalList = () => {
         const facilities = useFacilities();
         const crimFac = useCriminalFacilities();
         const criminals = useCriminals();
-
         renderList(criminals, facilities, crimFac);
       })
   );

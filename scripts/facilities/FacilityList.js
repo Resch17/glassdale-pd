@@ -6,7 +6,6 @@ import {
   useCriminalFacilities,
 } from './CriminalFacilityProvider.js';
 
-const eventHub = document.querySelector('.container');
 const facilityTarget = document.querySelector('.facilityContainer');
 
 const render = (facilityCollection, criminalCollection, allRelationships) => {
@@ -35,9 +34,8 @@ export const facilityList = () => {
       .then(getCriminalFacilities)
       .then(() => {
         const facilities = useFacilities();
-        const crimFac = useCriminalFacilities();
         const criminals = useCriminals();
-
+        const crimFac = useCriminalFacilities();
         render(facilities, criminals, crimFac);
       })
   );
