@@ -1,6 +1,14 @@
 import { useConvictions } from '../convictions/ConvictionProvider.js';
 import { Criminal } from './Criminal.js';
 import { useCriminals, getCriminals } from './CriminalProvider.js';
+import {
+  getCriminalFacilities,
+  useCriminalFacilities,
+} from '../facilities/CriminalFacilityProvider.js';
+import {
+  getFacilities,
+  useFacilities,
+} from '../facilities/FacilityProvider.js';
 
 const eventHub = document.querySelector('.container');
 const criminalTarget = document.querySelector('.criminalsContainer');
@@ -46,13 +54,15 @@ eventHub.addEventListener('associateChosen', (event) => {
   if (event.detail.chosenCriminal !== 0) {
     const criminalId = event.detail.chosenCriminal;
     const selectedCriminal = criminals.find(
-      (person) => person.id == criminalId
+      (person) => person.id === parseInt(criminalId)
     );
     const associates = selectedCriminal.known_associates;
     const displayAssociates = () => {
-      const knownAssociates = associates.map((x) => {
-        return `Associate: ${x.name} - Alibi: ${x.alibi}\n`;
-      });
+      const knownAssociates = associates
+        .sort((a, b) => a.name.localeCompare(b.name))
+        .map((x) => {
+          return `Associate: ${x.name} - Alibi: ${x.alibi}\n`;
+        });
       return `${
         selectedCriminal.name
       }'s Known Associates:\n${knownAssociates.join('')}`;
@@ -62,9 +72,17 @@ eventHub.addEventListener('associateChosen', (event) => {
   }
 });
 
+eventHub.addEventListener('showCriminals', () => {
+  let criminals = useCriminals();
+  render(criminals);
+});
+
 const render = (criminalCollection) => {
   criminalTarget.innerHTML = `
-  ${criminalCollection.map((criminal) => Criminal(criminal)).join('')}
+  ${criminalCollection
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .map((criminal) => Criminal(criminal))
+    .join('')}
   `;
 };
 

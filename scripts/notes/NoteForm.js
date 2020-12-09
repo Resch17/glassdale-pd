@@ -6,11 +6,13 @@ const contentTarget = document.querySelector('.noteFormContainer');
 const render = () => {
   contentTarget.innerHTML = `
   <div class="form-control isHidden">
-    <label for="note-suspect">Suspect: </label>
-    <input type="text" name="note-suspect" id="noteSuspect">
-    <label for="note-date">Date: </label>
-    <input type="text" name="note-date" id="noteDate">
-    <label for="note-text">Note: </label>
+    <label for="noteAuthor">Author: </label>
+    <input type="text" name="note-author" id="noteAuthor">
+    <label for="noteForm--criminal">Suspect: </label>
+    <select id="noteForm--criminal" class="criminalSelect">
+      <option value="0">Select a criminal...</option>
+    </select>
+    <label for="noteText">Note: </label>
     <textarea name="note-text" id="noteText" cols="30" rows="10"></textarea>
   </div>
   <div class="button-group">
@@ -28,21 +30,27 @@ export const NoteForm = () => {
 
 eventHub.addEventListener('click', (clickEvent) => {
   if (clickEvent.target.id === 'saveNote') {
-    let noteSuspectValue = document.getElementById('noteSuspect').value;
-    let noteDateValue = document.getElementById('noteDate').value;
-    let noteTextValue = document.getElementById('noteText').value;
+    let noteAuthor = document.getElementById('noteAuthor');
+    let noteSuspect = document.querySelector('.criminalSelect');
+    let noteDate = new Date();
+    let noteText = document.getElementById('noteText');
 
-    if (noteSuspectValue && noteDateValue && noteTextValue !== '') {
+    // validate that form values are not empty
+    if (noteAuthor.value && noteText.value !== '') {
       const newNote = {
-        suspect: noteSuspectValue,
-        date: noteDateValue,
-        text: noteTextValue,
+        author: noteAuthor.value,
+        criminalId: noteSuspect.value,
+        date: noteDate,
+        text: noteText.value,
+        timestamp: Date.now(),
       };
 
       saveNote(newNote);
-      noteSuspectValue = '';
-      noteDateValue = '';
-      noteTextValue = '';
+      noteAuthor.value = '';
+      noteSuspect.value = '';
+      noteText.value = '';
+    } else {
+      alert('Please fill out all the fields');
     }
   }
 });

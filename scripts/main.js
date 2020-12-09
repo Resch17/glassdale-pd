@@ -6,10 +6,11 @@ import { NoteList } from './notes/NoteList.js';
 import { associatesFunction } from './criminals/Associates.js';
 import { witnessList } from './witnesses/WitnessList.js';
 
+
 criminalList();
 NoteForm();
+NoteList();
 convictionSelect();
 officerSelect();
-NoteList();
 associatesFunction();
 witnessList();

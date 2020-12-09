@@ -1,8 +1,24 @@
-import { Note } from './Note.js';
-import { getNotes, useNotes } from './NoteProvider.js';
+import { getNotes, useNotes, deleteNote } from './NoteProvider.js';
+import { getCriminals, useCriminals } from '../criminals/CriminalProvider.js';
+const eventHub = document.querySelector('.container');
+const contentTarget = document.querySelector('.notesContainer');
+
+let criminals = [];
+
+const fillCriminalSelect = () => {
+  const criminalSelect = document.querySelector('.criminalSelect');
+  getCriminals().then(() => {
+    criminals = useCriminals();
+    criminalSelect.innerHTML += criminals
+      .sort((a, b) => a.name.localeCompare(b.name))
+      .map((criminal) => {
+        return `<option value="${criminal.id}">${criminal.name}</option>`;
+      })
+      .join('');
+  });
+};
 
 export const NoteList = () => {
-  const contentTarget = document.querySelector('.notesContainer');
   const addNoteButton = document.querySelector('#addNote');
   const closeNoteButton = document.querySelector('#closeNoteForm');
   const viewNotesButton = document.querySelector('#viewNotes');
@@ -25,14 +41,63 @@ export const NoteList = () => {
 
   viewNotesButton.addEventListener('click', () => {
     if (contentTarget.innerHTML === '') {
-      getNotes().then(() => {
-        const noteArray = useNotes();
-        viewNotesButton.innerHTML = 'Close Notes';
-        contentTarget.innerHTML = noteArray.map((note) => Note(note)).join('');
-      });
+      viewNotesButton.innerHTML = 'Close Notes';
+      renderNotes();
     } else {
       contentTarget.innerHTML = '';
       viewNotesButton.innerHTML = 'View Notes';
     }
   });
+  fillCriminalSelect();
+};
+
+eventHub.addEventListener('noteStateChanged', () => {
+  if (contentTarget.innerHTML !== '') {
+    renderNotes();
+  }
+});
+
+eventHub.addEventListener('click', (clickEvent) => {
+  if (clickEvent.target.id.startsWith('deleteNote--')) {
+    const [unused, id] = clickEvent.target.id.split('--');
+
+    deleteNote(id).then(() => {
+      renderNotes();
+    });
+  }
+});
+
+const renderNotes = () => {
+  getNotes()
+    .then(getCriminals)
+    .then(() => {
+      const noteArray = useNotes();
+      const criminalArray = useCriminals();
+      render(noteArray, criminalArray);
+    });
+};
+
+const render = (noteCollection, criminalCollection) => {
+  contentTarget.innerHTML = noteCollection
+    .map((note) => {
+      const relatedCriminal = criminalCollection.find(
+        (criminal) => criminal.id === parseInt(note.criminalId)
+      );
+
+      return `
+      <section class="note-card">
+        <h4>Detective's Note</h4>
+        <p><strong>Author: </strong>${note.author}</p>
+        <p><strong>Suspect: </strong>${relatedCriminal.name}</p>
+        <p><strong>Date: </strong>${new Date(note.date).toLocaleDateString(
+          'en-US'
+        )}</p>
+        <p>${note.text}</p>
+        <div class="text-center"><button id="deleteNote--${
+          note.id
+        }">Delete</button></div>
+      </section>
+    `;
+    })
+    .join('');
 };

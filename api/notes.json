@@ -1,28 +1,20 @@
 {
   "notes": [
     {
-      "suspect": "Madelyn Lebsack",
-      "date": "2020-12-01T15:44:04.782Z",
-      "text": "Madelyn was acting suspicous",
-      "id": 1
-    },
-    {
-      "suspect": "Monserrate Hand",
-      "date": "12/02/2020",
-      "text": "Associate \"Madge Walker\" definitely doesn't skateboard. Something is fishy here...",
+      "author": "Aaron",
+      "criminalId": "6",
+      "date": "2020-12-09T17:08:30.066Z",
+      "text": "Who did Adrienne bribe to get such a hefty sentence? ",
+      "timestamp": 1607533710066,
       "id": 2
     },
     {
-      "suspect": "test note",
-      "date": "12/2/2020",
-      "text": "TEST!",
+      "author": "Aaron",
+      "criminalId": "70",
+      "date": "2020-12-09T17:09:16.154Z",
+      "text": "Glassdale is safer with Brannon behind bars.",
+      "timestamp": 1607533756154,
       "id": 3
-    },
-    {
-      "suspect": "Unknown",
-      "date": "12/4/2020",
-      "text": "Multiple witnesses reference the suspect as being male, driving a large pickup, and wearing a hat from a car dealership.",
-      "id": 4
     }
   ]
 }

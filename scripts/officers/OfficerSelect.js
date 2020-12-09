@@ -18,9 +18,11 @@ const render = (officersCollection) => {
   contentTarget.innerHTML = `
   <select class="dropdown" id="officerSelect">
     <option value="0">Please select an officer...</option>
-    ${officersCollection.map((officer) => {
-      return `<option value="${officer.name}">${officer.name}</option>`;
-    })}
+    ${officersCollection
+      .sort((a, b) => a.name.localeCompare(b.name))
+      .map((officer) => {
+        return `<option value="${officer.name}">${officer.name}</option>`;
+      })}
   </select>
   `;
 };
