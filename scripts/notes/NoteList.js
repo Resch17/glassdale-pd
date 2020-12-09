@@ -1,7 +1,21 @@
-import { Note } from './Note.js';
 import { getNotes, useNotes } from './NoteProvider.js';
+import { getCriminals, useCriminals } from '../criminals/CriminalProvider.js';
 const eventHub = document.querySelector('.container');
 const contentTarget = document.querySelector('.notesContainer');
+
+let criminals = [];
+
+const fillCriminalSelect = () => {
+  const criminalSelect = document.querySelector('.criminalSelect');
+  getCriminals().then(() => {
+    criminals = useCriminals();
+    criminalSelect.innerHTML += criminals
+      .map((criminal) => {
+        return `<option value="${criminal.id}">${criminal.name}</option>`;
+      })
+      .join('');
+  });
+};
 
 export const NoteList = () => {
   const addNoteButton = document.querySelector('#addNote');
@@ -33,6 +47,7 @@ export const NoteList = () => {
       viewNotesButton.innerHTML = 'View Notes';
     }
   });
+  fillCriminalSelect();
 };
 
 eventHub.addEventListener('noteStateChanged', () => {
@@ -42,8 +57,31 @@ eventHub.addEventListener('noteStateChanged', () => {
 });
 
 const renderNotes = () => {
-  getNotes().then(() => {
-    const noteArray = useNotes();
-    contentTarget.innerHTML = noteArray.map((note) => Note(note)).join('');
-  });
+  getNotes()
+    .then(getCriminals)
+    .then(() => {
+      const noteArray = useNotes();
+      const criminalArray = useCriminals();
+      render(noteArray, criminalArray);
+    });
+};
+
+const render = (noteCollection, criminalCollection) => {
+  contentTarget.innerHTML = noteCollection.map((note) => {
+    const relatedCriminal = criminalCollection.find(
+      (criminal) => criminal.id === parseInt(note.criminalId)
+    );
+
+    return `
+      <section class="note-card">
+        <h4>Detective's Note</h4>
+        <p><strong>Author: </strong>${note.author}</p>
+        <p><strong>Suspect: </strong>${relatedCriminal.name}</p>
+        <p><strong>Date: </strong>${new Date(note.date).toLocaleDateString(
+          'en-US'
+        )}</p>
+        <p>${note.text}</p>
+      </section>
+    `;
+  }).join('');
 };

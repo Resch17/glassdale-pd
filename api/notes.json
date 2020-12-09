@@ -1,62 +1,20 @@
 {
   "notes": [
     {
-      "suspect": "Madelyn Lebsack",
-      "date": "2020-12-01T15:44:04.782Z",
-      "text": "Madelyn was acting suspicous",
+      "author": "Aaron",
+      "criminalId": "3",
+      "date": "2020-12-09T16:00:52.019Z",
+      "text": "Nate seems weird",
+      "timestamp": 1607529652019,
       "id": 1
     },
     {
-      "suspect": "Monserrate Hand",
-      "date": "12/02/2020",
-      "text": "Associate \"Madge Walker\" definitely doesn't skateboard. Something is fishy here...",
+      "author": "Aaron",
+      "criminalId": "2",
+      "date": "2020-12-09T16:15:57.600Z",
+      "text": "Rogelio looks guilty tbh, no surprise he's incarcerated",
+      "timestamp": 1607530557600,
       "id": 2
-    },
-    {
-      "suspect": "test note",
-      "date": "12/2/2020",
-      "text": "TEST!",
-      "id": 3
-    },
-    {
-      "suspect": "Unknown",
-      "date": "12/4/2020",
-      "text": "Multiple witnesses reference the suspect as being male, driving a large pickup, and wearing a hat from a car dealership.",
-      "id": 4
-    },
-    {
-      "suspect": "Cary Bauch",
-      "date": "2020-12-09",
-      "text": "TEST NOTE",
-      "timestamp": 1607372644854,
-      "id": 5
-    },
-    {
-      "suspect": "asdfasdf",
-      "date": "2020-12-10",
-      "text": "asdfasdf",
-      "timestamp": 1607443641640,
-      "id": 6
-    },
-    {
-      "suspect": "asdfasdf",
-      "date": "2020-12-18",
-      "text": "asdfasdfasdf",
-      "timestamp": 1607444145143,
-      "id": 7
-    },
-    {
-      "suspect": "TEST",
-      "text": "TEST",
-      "timestamp": 1607457116571,
-      "id": 8
-    },
-    {
-      "suspect": "TEST",
-      "date": "2020-12-08T19:52:52.817Z",
-      "text": "TEST",
-      "timestamp": 1607457172817,
-      "id": 9
     }
   ]
 }

@@ -83,6 +83,10 @@ header {
   border-radius: 0.5em;
 }
 
+.criminalSelect {
+  margin-top: 0.25em;
+}
+
 .noteFormContainer textarea {
   margin-bottom: 0.25em;
   padding: 4px;

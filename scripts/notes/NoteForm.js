@@ -6,8 +6,11 @@ const contentTarget = document.querySelector('.noteFormContainer');
 const render = () => {
   contentTarget.innerHTML = `
   <div class="form-control isHidden">
-    <label for="noteSuspect">Suspect: </label>
-    <input type="text" name="note-suspect" id="noteSuspect">
+    <label for="noteAuthor">Author: </label>
+    <input type="text" name="note-author" id="noteAuthor">
+    <select id="noteForm--criminal" class="criminalSelect">
+      <option value="0">Select a criminal...</option>
+    </select>
     <label for="noteText">Note: </label>
     <textarea name="note-text" id="noteText" cols="30" rows="10"></textarea>
   </div>
@@ -26,22 +29,24 @@ export const NoteForm = () => {
 
 eventHub.addEventListener('click', (clickEvent) => {
   if (clickEvent.target.id === 'saveNote') {
-    let noteSuspect = document.getElementById('noteSuspect');
+    let noteAuthor = document.getElementById('noteAuthor');
+    let noteSuspect = document.querySelector('.criminalSelect');
     let noteDate = new Date();
     let noteText = document.getElementById('noteText');
 
     // validate that form values are not empty
-    if (noteSuspect.value && noteText.value !== '') {
+    if (noteAuthor.value && noteText.value !== '') {
       const newNote = {
-        suspect: noteSuspect.value,
+        author: noteAuthor.value,
+        criminalId: noteSuspect.value,
         date: noteDate,
         text: noteText.value,
         timestamp: Date.now(),
       };
 
       saveNote(newNote);
+      noteAuthor.value = '';
       noteSuspect.value = '';
-      // noteDate.value = '';
       noteText.value = '';
     } else {
       alert('Please fill out all the fields');

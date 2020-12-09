@@ -9,8 +9,8 @@ import { witnessList } from './witnesses/WitnessList.js';
 
 criminalList();
 NoteForm();
+NoteList();
 convictionSelect();
 officerSelect();
-NoteList();
 associatesFunction();
 witnessList();
