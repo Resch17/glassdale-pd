@@ -1,3 +1,5 @@
+const eventHub = document.querySelector('.container');
+
 export const Criminal = (criminal, facilities) => {
   return `<section class="criminal-card">
     <h4>${criminal.name}</h4>
@@ -18,3 +20,17 @@ export const Criminal = (criminal, facilities) => {
     <button id="associates--${criminal.id}">Associated Alibis</button>
   </section>`;
 };
+
+eventHub.addEventListener('click', (event) => {
+  if (event.target.id.startsWith('associates')) {
+    const idOfButton = event.target.id;
+    const [prefix, criminal] = idOfButton.split('--');
+
+    const customEvent = new CustomEvent('associateChosen', {
+      detail: {
+        chosenCriminal: criminal,
+      },
+    });
+    eventHub.dispatchEvent(customEvent);
+  }
+});
