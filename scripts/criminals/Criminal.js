@@ -17,7 +17,7 @@ export const Criminal = (criminal, facilities) => {
         ${facilities.map((f) => `<li> - ${f.facilityName}</li>`).join('')}
       </ul>
     </div>
-    <button id="associates--${criminal.id}">Associated Alibis</button>
+    <button id="associates--${criminal.id}">Associates & Alibis</button>
   </section>`;
 };
 

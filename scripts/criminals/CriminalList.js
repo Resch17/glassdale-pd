@@ -10,6 +10,7 @@ import {
   useFacilities,
 } from '../facilities/FacilityProvider.js';
 import { facilityList } from '../facilities/FacilityList.js';
+import { AssociateDialog } from '../associates/AssociateDialog.js';
 
 const eventHub = document.querySelector('.container');
 const criminalTarget = document.querySelector('.criminalsContainer');
@@ -59,23 +60,21 @@ eventHub.addEventListener('officerChosen', (event) => {
 
 eventHub.addEventListener('associateChosen', (event) => {
   let criminals = useCriminals();
+  const dialogElement = document.querySelector('.criminal-associates');
   if (event.detail.chosenCriminal !== 0) {
     const criminalId = event.detail.chosenCriminal;
     const selectedCriminal = criminals.find(
       (person) => person.id === parseInt(criminalId)
     );
-    const associates = selectedCriminal.known_associates;
-    const displayAssociates = () => {
-      const knownAssociates = associates
-        .sort((a, b) => a.name.localeCompare(b.name))
-        .map((x) => {
-          return `Associate: ${x.name} - Alibi: ${x.alibi}\n`;
-        });
-      return `${
-        selectedCriminal.name
-      }'s Known Associates:\n${knownAssociates.join('')}`;
-    };
-    alert(displayAssociates());
+    AssociateDialog(selectedCriminal);
+    dialogElement.showModal();
+    document.querySelector('#closeModal').addEventListener('click', () => {
+      dialogElement.close();
+    });
+    window.onclick = function(event) {
+      if (event.target === dialogElement)
+      dialogElement.close();
+    }
   }
 });
 
