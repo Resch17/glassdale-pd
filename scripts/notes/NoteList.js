@@ -3,21 +3,6 @@ import { getCriminals, useCriminals } from '../criminals/CriminalProvider.js';
 const eventHub = document.querySelector('.container');
 const contentTarget = document.querySelector('.notesContainer');
 
-let criminals = [];
-
-const fillCriminalSelect = () => {
-  const criminalSelect = document.querySelector('.criminalSelect');
-  getCriminals().then(() => {
-    criminals = useCriminals();
-    criminalSelect.innerHTML += criminals
-      .sort((a, b) => a.name.localeCompare(b.name))
-      .map((criminal) => {
-        return `<option value="${criminal.id}">${criminal.name}</option>`;
-      })
-      .join('');
-  });
-};
-
 export const NoteList = () => {
   const addNoteButton = document.querySelector('#addNote');
   const closeNoteButton = document.querySelector('#closeNoteForm');
@@ -48,7 +33,6 @@ export const NoteList = () => {
       viewNotesButton.innerHTML = 'View Notes';
     }
   });
-  fillCriminalSelect();
 };
 
 eventHub.addEventListener('noteStateChanged', () => {
@@ -64,6 +48,18 @@ eventHub.addEventListener('click', (clickEvent) => {
     deleteNote(id).then(() => {
       renderNotes();
     });
+  }
+});
+
+eventHub.addEventListener('click', (clickEvent) => {
+  if (clickEvent.target.id.startsWith('editNote--')) {
+    const [unused, id] = clickEvent.target.id.split('--');
+    const customEvent = new CustomEvent('editClicked', {
+      detail: {
+        chosenNote: id,
+      },
+    });
+    eventHub.dispatchEvent(customEvent);
   }
 });
 
@@ -93,9 +89,10 @@ const render = (noteCollection, criminalCollection) => {
           'en-US'
         )}</p>
         <p>${note.text}</p>
-        <div class="text-center"><button id="deleteNote--${
-          note.id
-        }">Delete</button></div>
+        <div class="text-center">
+          <button id="deleteNote--${note.id}">Delete</button>
+          <button id="editNote--${note.id}">Edit</button>
+        </div>
       </section>
     `;
     })
