@@ -65,7 +65,6 @@ eventHub.addEventListener('click', (clickEvent) => {
 
 const renderNotes = () => {
   getNotes()
-    .then(getCriminals)
     .then(() => {
       const noteArray = useNotes();
       const criminalArray = useCriminals();
