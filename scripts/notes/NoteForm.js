@@ -1,6 +1,5 @@
 import { getNotes, useNotes, saveNote, editNote } from './NoteProvider.js';
 import { getCriminals, useCriminals } from '../criminals/CriminalProvider.js';
-// import { fillCriminalSelect } from './NoteList.js';
 
 const eventHub = document.querySelector('.container');
 const contentTarget = document.querySelector('.noteFormContainer');
