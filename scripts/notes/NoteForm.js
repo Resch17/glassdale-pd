@@ -59,7 +59,7 @@ eventHub.addEventListener('click', (clickEvent) => {
     ) {
       const newNote = {
         author: noteAuthor.value,
-        criminalId: noteSuspect.value,
+        criminalId: parseInt(noteSuspect.value),
         date: noteDate,
         text: noteText.value,
         timestamp: Date.now(),

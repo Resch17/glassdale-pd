@@ -76,7 +76,7 @@ const render = (noteCollection, criminalCollection) => {
   contentTarget.innerHTML = noteCollection
     .map((note) => {
       const relatedCriminal = criminalCollection.find(
-        (criminal) => criminal.id === parseInt(note.criminalId)
+        (criminal) => criminal.id === note.criminalId
       );
 
       return `
