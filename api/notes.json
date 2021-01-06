@@ -2,7 +2,7 @@
   "notes": [
     {
       "author": "Aaron",
-      "criminalId": "70",
+      "criminalId": 70,
       "date": "2020-12-26T17:51:08.595Z",
       "text": "Glassdale is safer with Brannon behind bars. Way safer.",
       "timestamp": 1609005068595,
@@ -10,7 +10,7 @@
     },
     {
       "author": "Aaron",
-      "criminalId": "6",
+      "criminalId": 6,
       "date": "2020-12-09T20:25:03.274Z",
       "text": "Who did she TRY to bribe to get such a lengthy sentence?",
       "timestamp": 1607545503274,
@@ -18,7 +18,7 @@
     },
     {
       "author": "Aaron",
-      "criminalId": "74",
+      "criminalId": 74,
       "date": "2020-12-26T17:51:59.155Z",
       "text": "Bud Waters is just an honest name for Bud Light. Good joke, Aaron.",
       "timestamp": 1609005119155,
@@ -26,11 +26,19 @@
     },
     {
       "author": "Aaron",
-      "criminalId": "46",
+      "criminalId": 46,
       "date": "2020-12-29T04:16:07.645Z",
       "text": "Related to former Blue Jays pitcher Marcus Stroman??? Edit: probably not. 2nd Edit: definitely not.",
       "timestamp": 1609215367645,
       "id": 7
+    },
+    {
+      "author": "Aaron",
+      "criminalId": 72,
+      "date": "2021-01-06T15:52:31.289Z",
+      "text": "Arno? ARNO???!???",
+      "timestamp": 1609948351289,
+      "id": 8
     }
   ]
 }
