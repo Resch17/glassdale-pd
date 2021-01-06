@@ -45,9 +45,7 @@ eventHub.addEventListener('click', (clickEvent) => {
   if (clickEvent.target.id.startsWith('deleteNote--')) {
     const [unused, id] = clickEvent.target.id.split('--');
 
-    deleteNote(id).then(() => {
-      renderNotes();
-    });
+    deleteNote(id);
   }
 });
 
