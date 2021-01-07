@@ -71,10 +71,9 @@ eventHub.addEventListener('associateChosen', (event) => {
     document.querySelector('#closeModal').addEventListener('click', () => {
       dialogElement.close();
     });
-    window.onclick = function(event) {
-      if (event.target === dialogElement)
-      dialogElement.close();
-    }
+    window.onclick = function (event) {
+      if (event.target === dialogElement) dialogElement.close();
+    };
   }
 });
 
@@ -109,14 +108,13 @@ const renderList = (criminalCollection, allFacilities, allRelationships) => {
 };
 
 export const criminalList = () => {
-  getCriminals().then(
-    getFacilities()
-      .then(getCriminalFacilities)
-      .then(() => {
-        const facilities = useFacilities();
-        const crimFac = useCriminalFacilities();
-        const criminals = useCriminals();
-        renderList(criminals, facilities, crimFac);
-      })
-  );
+  getCriminals()
+    .then(getFacilities)
+    .then(getCriminalFacilities)
+    .then(() => {
+      const facilities = useFacilities();
+      const crimFac = useCriminalFacilities();
+      const criminals = useCriminals();
+      renderList(criminals, facilities, crimFac);
+    });
 };
