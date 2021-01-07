@@ -13,15 +13,17 @@ const render = (facilityCollection, criminalCollection, allRelationships) => {
     .sort((a, b) => a.facilityName.localeCompare(b.facilityName))
     .map((facilityObject) => {
       const criminalRelationshipsForThisFacility = allRelationships.filter(
-        (facility) => facility.facilityId === facilityObject.id
+        (relationship) => relationship.facilityId === facilityObject.id
       );
 
-      const criminals = criminalRelationshipsForThisFacility.map((cf) => {
-        const matchingCriminalObject = criminalCollection.find(
-          (criminal) => criminal.id === cf.criminalId
-        );
-        return matchingCriminalObject;
-      });
+      const criminals = criminalRelationshipsForThisFacility.map(
+        (relationship) => {
+          const matchingCriminalObject = criminalCollection.find(
+            (criminalObject) => criminalObject.id === relationship.criminalId
+          );
+          return matchingCriminalObject;
+        }
+      );
 
       return Facility(facilityObject, criminals);
     })
@@ -29,14 +31,13 @@ const render = (facilityCollection, criminalCollection, allRelationships) => {
 };
 
 export const facilityList = () => {
-  getFacilities().then(
-    getCriminals()
-      .then(getCriminalFacilities)
-      .then(() => {
-        const facilities = useFacilities();
-        const criminals = useCriminals();
-        const crimFac = useCriminalFacilities();
-        render(facilities, criminals, crimFac);
-      })
-  );
+  getFacilities()
+    .then(getCriminals)
+    .then(getCriminalFacilities)
+    .then(() => {
+      const facilities = useFacilities();
+      const criminals = useCriminals();
+      const crimFac = useCriminalFacilities();
+      render(facilities, criminals, crimFac);
+    });
 };
