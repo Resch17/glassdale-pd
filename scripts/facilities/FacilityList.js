@@ -8,24 +8,29 @@ import {
 
 const facilityTarget = document.querySelector('.facilityContainer');
 
-const render = (facilityCollection, criminalCollection, allRelationships) => {
-  facilityTarget.innerHTML = facilityCollection
+// component state variables
+let facilities = [];
+let criminals = [];
+let crimFac = [];
+
+const render = () => {
+  facilityTarget.innerHTML = facilities
     .sort((a, b) => a.facilityName.localeCompare(b.facilityName))
     .map((facilityObject) => {
-      const criminalRelationshipsForThisFacility = allRelationships.filter(
+      const criminalRelationshipsForThisFacility = crimFac.filter(
         (relationship) => relationship.facilityId === facilityObject.id
       );
 
-      const criminals = criminalRelationshipsForThisFacility.map(
+      const criminalsList = criminalRelationshipsForThisFacility.map(
         (relationship) => {
-          const matchingCriminalObject = criminalCollection.find(
+          const matchingCriminalObject = criminals.find(
             (criminalObject) => criminalObject.id === relationship.criminalId
           );
           return matchingCriminalObject;
         }
       );
 
-      return Facility(facilityObject, criminals);
+      return Facility(facilityObject, criminalsList);
     })
     .join('');
 };
@@ -35,9 +40,10 @@ export const facilityList = () => {
     .then(getCriminals)
     .then(getCriminalFacilities)
     .then(() => {
-      const facilities = useFacilities();
-      const criminals = useCriminals();
-      const crimFac = useCriminalFacilities();
-      render(facilities, criminals, crimFac);
+      // setting component state
+      facilities = useFacilities();
+      criminals = useCriminals();
+      crimFac = useCriminalFacilities();
+      render();
     });
 };

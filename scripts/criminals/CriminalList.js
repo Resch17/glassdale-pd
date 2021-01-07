@@ -15,12 +15,15 @@ import { AssociateDialog } from '../associates/AssociateDialog.js';
 const eventHub = document.querySelector('.container');
 const criminalTarget = document.querySelector('.criminalsContainer');
 
+// variables to hold component state
 let criminals = [];
 let facilities = [];
 let crimFac = [];
 
 eventHub.addEventListener('crimeChosen', (event) => {
-  // let criminals = useCriminals();
+  // reset component state criminals
+  criminals = useCriminals();
+
   let crimes = useConvictions();
   let matchingCriminals;
 
@@ -35,11 +38,12 @@ eventHub.addEventListener('crimeChosen', (event) => {
     matchingCriminals = criminals.filter(
       (person) => person.conviction === crime.name
     );
-    // const facilities = useFacilities();
-    // const crimFac = useCriminalFacilities();
+
+    // set component state criminals to matchingCriminals
+    criminals = matchingCriminals;
 
     // render the list of matching criminals (including facility info to fulfill refactored renderList function)
-    renderList(matchingCriminals, facilities, crimFac);
+    render();
   } else {
     // render default list if default crime is chosen (no crime is chosen)
     criminalList();
@@ -47,23 +51,26 @@ eventHub.addEventListener('crimeChosen', (event) => {
 });
 
 eventHub.addEventListener('officerChosen', (event) => {
-  let criminals = useCriminals();
+  // reset component state criminals
+  criminals = useCriminals();
+
   let matchingCriminals;
   if (event.detail.officerThatWasChosen !== '0') {
     const officer = event.detail.officerThatWasChosen;
     matchingCriminals = criminals.filter(
       (person) => person.arrestingOfficer === officer
     );
-    // const facilities = useFacilities();
-    // const crimFac = useCriminalFacilities();
-    renderList(matchingCriminals, facilities, crimFac);
+
+    // set component state criminals to matchingCriminals
+    criminals = matchingCriminals;
+    render();
   } else {
     criminalList();
   }
 });
 
 eventHub.addEventListener('associateChosen', (event) => {
-  let criminals = useCriminals();
+  criminals = useCriminals();
   const dialogElement = document.querySelector('.criminal-associates');
   if (event.detail.chosenCriminal !== 0) {
     const criminalId = event.detail.chosenCriminal;
@@ -91,22 +98,24 @@ eventHub.addEventListener('facilitiesButtonClicked', () => {
   document.querySelector('.facilityContainer').classList.toggle('isHidden');
 });
 
-const renderList = (criminalCollection, allFacilities, allRelationships) => {
-  criminalTarget.innerHTML = criminalCollection
+const render = () => {
+  criminalTarget.innerHTML = criminals
     .sort((a, b) => a.name.localeCompare(b.name))
     .map((criminalObject) => {
-      const facilityRelationshipsForThisCriminal = allRelationships.filter(
+      const facilityRelationshipsForThisCriminal = crimFac.filter(
         (cf) => cf.criminalId === criminalObject.id
       );
 
-      const facilities = facilityRelationshipsForThisCriminal.map((cf) => {
-        const matchingFacilityObject = allFacilities.find(
-          (facility) => facility.id === cf.facilityId
-        );
-        return matchingFacilityObject;
-      });
+      const matchingFacilities = facilityRelationshipsForThisCriminal.map(
+        (cf) => {
+          const matchingFacilityObject = facilities.find(
+            (facility) => facility.id === cf.facilityId
+          );
+          return matchingFacilityObject;
+        }
+      );
 
-      return Criminal(criminalObject, facilities);
+      return Criminal(criminalObject, matchingFacilities);
     })
     .join('');
 };
@@ -119,6 +128,6 @@ export const criminalList = () => {
       facilities = useFacilities();
       crimFac = useCriminalFacilities();
       criminals = useCriminals();
-      renderList(criminals, facilities, crimFac);
+      render();
     });
 };
