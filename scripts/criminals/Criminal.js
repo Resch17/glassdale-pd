@@ -13,7 +13,7 @@ export const Criminal = (criminal, facilities) => {
     )}</p>
     <div>
       <h3>Facilities</h3>
-      <ul class=>
+      <ul class="criminal-card__facilities">
         ${facilities.map((f) => `<li> - ${f.facilityName}</li>`).join('')}
       </ul>
     </div>
