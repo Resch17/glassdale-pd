@@ -15,8 +15,12 @@ import { AssociateDialog } from '../associates/AssociateDialog.js';
 const eventHub = document.querySelector('.container');
 const criminalTarget = document.querySelector('.criminalsContainer');
 
+let criminals = [];
+let facilities = [];
+let crimFac = [];
+
 eventHub.addEventListener('crimeChosen', (event) => {
-  let criminals = useCriminals();
+  // let criminals = useCriminals();
   let crimes = useConvictions();
   let matchingCriminals;
 
@@ -31,8 +35,8 @@ eventHub.addEventListener('crimeChosen', (event) => {
     matchingCriminals = criminals.filter(
       (person) => person.conviction === crime.name
     );
-    const facilities = useFacilities();
-    const crimFac = useCriminalFacilities();
+    // const facilities = useFacilities();
+    // const crimFac = useCriminalFacilities();
 
     // render the list of matching criminals (including facility info to fulfill refactored renderList function)
     renderList(matchingCriminals, facilities, crimFac);
@@ -50,8 +54,8 @@ eventHub.addEventListener('officerChosen', (event) => {
     matchingCriminals = criminals.filter(
       (person) => person.arrestingOfficer === officer
     );
-    const facilities = useFacilities();
-    const crimFac = useCriminalFacilities();
+    // const facilities = useFacilities();
+    // const crimFac = useCriminalFacilities();
     renderList(matchingCriminals, facilities, crimFac);
   } else {
     criminalList();
@@ -112,9 +116,9 @@ export const criminalList = () => {
     .then(getFacilities)
     .then(getCriminalFacilities)
     .then(() => {
-      const facilities = useFacilities();
-      const crimFac = useCriminalFacilities();
-      const criminals = useCriminals();
+      facilities = useFacilities();
+      crimFac = useCriminalFacilities();
+      criminals = useCriminals();
       renderList(criminals, facilities, crimFac);
     });
 };
